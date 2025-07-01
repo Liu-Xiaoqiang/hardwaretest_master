@@ -236,6 +236,10 @@ void MainWindow::readData()
             setTestDevice(str);
     }
 
+    if(QString(data).contains("@@STMP25",Qt::CaseSensitive)){
+            QString str ="STMP25";
+            setTestDevice(str);
+    }
 
     //ZIGBEE
     if(testDevice == "CS10600RA4070" || testDevice == "CS10600RA4070D" || testDevice == "CS12800RA4101" || testDevice == "LRRA4-101" || testDevice == "CS12800RA4101BOX" || testDevice == "CS12800RA4101A" || testDevice == "CS12800RA4101P" || testDevice == "CS19108RA4133P" || testDevice == "CS10768RA4150P" || testDevice == "CS19108RA4156P" || testDevice == "CS19108RA4215P" || testDevice == "CS12800PX101"){
@@ -442,7 +446,7 @@ void MainWindow::autoTest()
     // CAN Init
     system("echo >/tmp/can0.txt");
     system("canconfig can0 stop");
-    if (testDevice == "RK3568" || testDevice == "RK3588" || testDevice == "IMX8MP") {
+    if (testDevice == "RK3568" || testDevice == "RK3588" || testDevice == "IMX8MP" || testDevice == "STMP25")  {
         system("canconfig can0 bitrate 100000 ctrlmode triple-sampling on loopback off ");
     } else {
         system("canconfig can0 bitrate 10000 ctrlmode triple-sampling on loopback off ");
@@ -453,7 +457,7 @@ void MainWindow::autoTest()
 
     system("echo >/tmp/can1.txt");
     system("canconfig can1 stop");
-    if (testDevice == "RK3568" || testDevice == "RK3588" || testDevice == "IMX8MP") {
+    if (testDevice == "RK3568" || testDevice == "RK3588" || testDevice == "IMX8MP" || testDevice == "STMP25") {
         system("canconfig can1 bitrate 100000 ctrlmode triple-sampling on loopback off ");
     } else {
         system("canconfig can1 bitrate 10000 ctrlmode triple-sampling on loopback off ");
